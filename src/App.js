@@ -7,14 +7,14 @@ import './App.css';
 
 const realmId = process.env.REACT_APP_REALM_ID;
 const app = new RealmWeb.App({id: realmId});
-console.log(app);
+console.log(RealmWeb);
 
 // console.log(app);
 
 function App() {
   return (
     <div className="App">
-      <UserLogin />
+      <UserLogin app={app} realmCreditials={RealmWeb.Credentials}/>
     </div>
   );
 }
