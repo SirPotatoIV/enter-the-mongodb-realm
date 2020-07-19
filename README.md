@@ -2,6 +2,11 @@
 
 My first attempt at a mongodb realm application. You may find some of my notes odd or obvious. As a new developer many of these tips/skills are new to me, so this documentation is also to help me.
 
+## Current State of Project
+
+- Focus: Managing user login state better. I think there is a way to do it with the ApolloProvider component as it uses the context hook.
+- Major Wins: Connected to Realm app, Autheticated a user using the Realm SDK, Performed a query using the GraphQL SDK.
+
 ## Quick Summary of Planned Tech Stack
 
 - React (functional/hooks) for front-end
@@ -33,3 +38,9 @@ My first attempt at a mongodb realm application. You may find some of my notes o
 
 - MongoDB documetation on how to create a client (front-end) to connect to the Realm created GraphQL SDK: https://docs.mongodb.com/realm/graphql/connect/
   - Note: This is heavily focused on React as the front-end framework
+
+## Preforming queries to Realm using GraphQL/Apollo
+
+- MongoDB documentation has you use the Apollo React Hook useQuery.
+- I started with MongoDB documentation: https://docs.mongodb.com/realm/graphql/execute/
+- I found the Apollo documentation to be a little clearer: https://docs.mongodb.com/realm/graphql/execute/

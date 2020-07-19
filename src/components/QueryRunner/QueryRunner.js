@@ -1,36 +1,38 @@
+// Execute GraphQL Operation: https://docs.mongodb.com/realm/graphql/execute/
 // React
 import React from "react";
 // Apollo GraphQL hook
+// Apollo documentation for this hook: https://www.apollographql.com/docs/react/data/queries/
 import { useQuery } from "@apollo/react-hooks";
 // GraphQL
 import gql from "graphql-tag";
 
-const allBurritos = gql`
-  query allBurritos {
+const GET_BURRITOS = gql(`
+  query GetBurritos {
     burritos {
+      _id
       name
       rating
     }
   }
-`;
+`);
 
 export default function QueryRunner() {
-  const { loading, error, data } = useQuery(allBurritos);
+  const { loading, error, data } = useQuery(GET_BURRITOS);
 
-  console.log(data);
+  if (loading) {
+    return "Loading...";
+  }
+  if (error) {
+    return `Error! ${error.message}`;
+  }
 
   return (
     <div>
-      <h2>Let's Get Some Data!</h2>
-      {loading && <div>loading</div>}
-      {error && <div>{`encountered an error: ${error}`}</div>}
-      {data && <div>{`successfully queried ${data.length} burritos.`}</div>}
-      <div>
-        {"loading" ||
-          data.map(function (burrito) {
-            return <p>{burrito.name}</p>;
-          })}
-      </div>
+      <h2>My Favorite Burritos</h2>
+      {data.burritos.map((burrito) => (
+        <p key={burrito._id}>{burrito.name}</p>
+      ))}
     </div>
   );
 }
