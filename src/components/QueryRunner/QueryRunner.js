@@ -1,5 +1,5 @@
 // React
-import React, { useEffect } from "react";
+import React from "react";
 // Apollo GraphQL hook
 import { useQuery } from "@apollo/react-hooks";
 // GraphQL
@@ -7,7 +7,7 @@ import gql from "graphql-tag";
 
 const allBurritos = gql`
   query allBurritos {
-    burritos(query: {}) {
+    burritos {
       name
       rating
     }
@@ -15,7 +15,8 @@ const allBurritos = gql`
 `;
 
 export default function QueryRunner() {
-  const { loading, error, data } = useQuery(allBurritos) || "loading";
+  const { loading, error, data } = useQuery(allBurritos);
+
   console.log(data);
 
   return (
@@ -24,6 +25,12 @@ export default function QueryRunner() {
       {loading && <div>loading</div>}
       {error && <div>{`encountered an error: ${error}`}</div>}
       {data && <div>{`successfully queried ${data.length} burritos.`}</div>}
+      <div>
+        {"loading" ||
+          data.map(function (burrito) {
+            return <p>{burrito.name}</p>;
+          })}
+      </div>
     </div>
   );
 }

@@ -21,6 +21,8 @@ export default function UserLogin(props) {
     event.preventDefault();
     const credentials = realmCreditials.emailPassword(email, password);
     try {
+      console.log("login attempted");
+      console.log(realmApp);
       // logs user into Realm app. Doesn't need to be stored to state. It will be on the App object
       await realmApp.logIn(credentials);
     } catch (err) {
@@ -32,6 +34,7 @@ export default function UserLogin(props) {
   // html "template"
   return (
     <div>
+      <p>Current User: {realmApp.currentUser.email}</p>
       <form onSubmit={handleSubmit}>
         <label htmlFor="username">
           <input

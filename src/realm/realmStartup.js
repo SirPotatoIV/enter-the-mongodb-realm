@@ -21,13 +21,17 @@ const authorizationHeaderLink = setContext(async (_, { headers }) => {
   if (app.currentUser) {
     //Refreshing custom data also refreshes the access token
     await app.currentUser.refreshCustomData();
-  } else {
-    // If no user is logged in, log in an anonymous user
-    await app.logIn(RealmWeb.Credentials.anonymous());
   }
+  // Currently don't have anonymous login setup
+  //========================
+  // else {
+  //   // If no user is logged in, log in an anonymous user
+  //   await app.logIn(RealmWeb.Credentials.anonymous());
+  // }
+  //========================
+
   // Get a valid access toekn for the current user
   const { accessToken } = app.currentUser;
-  console.log("currentUser", accessToken, app.currentUser);
 
   // Set the Authorization header, presevering any other headers (the spread operator does this)
   return {
