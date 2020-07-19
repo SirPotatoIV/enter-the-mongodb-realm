@@ -27,7 +27,7 @@ My first attempt at a mongodb realm application.
 ## Using Environment Variables with React
 
 - How to use environmental variables with React: https://create-react-app.dev/docs/adding-custom-environment-variables/
-  - Note: don't skim the documentation like me and ignore the fact that your custom envs need to start with REACT*APP*
+  - Note: don't skim the documentation like me and ignore the fact that your custom envs need to start with "REACT_APP\_"
 
 ## Setting up Apollo for React (used for GraphQL)
 
