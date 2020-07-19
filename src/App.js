@@ -1,21 +1,28 @@
-import React from 'react';
-import * as RealmWeb from 'realm-web';
+// React
+import React from "react";
+import "./App.css";
+// Components
+import UserLogin from "./components/UserLogin";
+import QueryRunner from "./components/QueryRunner";
+// Apollo and Realm
+import { app, client } from "./realm/apolloClient";
+// Apollo components
+import { ApolloProvider } from "@apollo/react-hooks";
 
-import UserLogin from "./components/UserLogin/UserLogin";
+console.log(app);
 
-import './App.css';
-
-const realmId = process.env.REACT_APP_REALM_ID;
-const app = new RealmWeb.App({id: realmId});
-console.log(RealmWeb);
-
-// console.log(app);
+const currentUser = app.currentUser.profile.email;
 
 function App() {
   return (
-    <div className="App">
-      <UserLogin app={app} realmCreditials={RealmWeb.Credentials}/>
-    </div>
+    <ApolloProvider client={client}>
+      <div className="App">
+        <h1>Welcome to the Realm.</h1>
+        <p>Current User: {currentUser}</p>
+        <UserLogin />
+        <QueryRunner />
+      </div>
+    </ApolloProvider>
   );
 }
 
