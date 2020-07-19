@@ -1,4 +1,4 @@
-// https://docs.mongodb.com/realm/graphql/connect/
+// How to connect to the GraphQL SDK: https://docs.mongodb.com/realm/graphql/connect/
 // React
 import React from "react";
 import "./App.css";
