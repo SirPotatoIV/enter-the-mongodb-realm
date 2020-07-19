@@ -1,29 +1,35 @@
+// Realm Authentication: https://docs.mongodb.com/realm/web/authenticate/
+// React form with hooks: https://rangle.io/blog/simplifying-controlled-inputs-with-hooks/
+// React
 import React, { useState } from "react";
+//Realm
 import * as RealmWeb from "realm-web";
-
 const realmCreditials = RealmWeb.Credentials;
 
+// Creates React functional component
 export default function UserLogin(props) {
+  // create state with hooks
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [currentUser, setCurrentUser] = useState("");
 
+  // this is the Realm app instance created in ../../realm/apolloClient
+  // -- used to get the method needed to authenticate the user and store the the user
   const realmApp = props.app;
-  console.log(realmApp);
 
+  // handle submission of login creditials and send to Realm to authorize
   async function handleSubmit(event) {
     event.preventDefault();
     const credentials = realmCreditials.emailPassword(email, password);
     try {
-      const user = await realmApp.logIn(credentials);
-      setCurrentUser(user);
-      console.log(user);
-      console.log(currentUser);
+      // logs user into Realm app. Doesn't need to be stored to state. It will be on the App object
+      await realmApp.logIn(credentials);
     } catch (err) {
+      // need to add better error handling in the future. Realm tutorial has good example.
       console.log(err);
     }
   }
 
+  // html "template"
   return (
     <div>
       <form onSubmit={handleSubmit}>

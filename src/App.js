@@ -1,3 +1,4 @@
+// https://docs.mongodb.com/realm/graphql/connect/
 // React
 import React from "react";
 import "./App.css";
@@ -5,7 +6,7 @@ import "./App.css";
 import UserLogin from "./components/UserLogin";
 import QueryRunner from "./components/QueryRunner";
 // Apollo and Realm
-import { app, client } from "./realm/apolloClient";
+import { app, client } from "./realm/realmStartup";
 // Apollo components
 import { ApolloProvider } from "@apollo/react-hooks";
 

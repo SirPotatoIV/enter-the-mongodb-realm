@@ -1,4 +1,4 @@
-// https://docs.mongodb.com/realm/graphql/connect/
+// Connecting to GraphQL SDK https://docs.mongodb.com/realm/graphql/connect/
 // -- I decided to split up the Apollo creation file a little bit
 // -- I create the ApolloClient here and the Realm App
 // -- I will create the ApolloProvider in App.js
